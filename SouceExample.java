@@ -33,9 +33,9 @@ public class SourceExample{
 
     // フィールド変数a, b, strの値を内部で初期化（設定）するコンストラクタをもう一つ記述する
     public SourceExample(){
-        this.a =1;
-        this.b =1;
-        this.str=1;
+        this.a =;
+        this.b ;
+        this.str;
     }
 
 
