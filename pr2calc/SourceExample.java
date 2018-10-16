@@ -1,9 +1,5 @@
-import java.util.Arrays;
-
-import jdk.nashorn.internal.ir.BreakableNode;
-
-import java.io.*;
 package pr2calc;
+import java.io.*;
 public class SourceExample{  
 
     public int a;            // 左の3変数・・・フィールド変数（メソッドの外にある）。
@@ -102,7 +98,7 @@ public class SourceExample{
     // inputData に、ファイルから文字列を一行分読み込む
     // 得られた文字列データを、スペース(= "\\s") で区切り、配列 inputValue へ格納
     inputData=fin.readLine();
-    if(data==NULL)break;
+    if(inputData==NULL)break;
     inputValue=data.split("\\s");
     if(inputValue.length != 1)
         return false;
@@ -117,11 +113,15 @@ public class SourceExample{
             return false;
         else{
             // 変数 row に行数のデータ、column に列数のデータを代入
-            row=;
+            row=3;
+            column=4;
             this.b = new int[row][column];
             // 配列 b のh行i列目の要素に、読みんだファイルのh行目、(左から）i番目のデータを格納
             // 最後に一行読み込み、スペース区切りで inputValue へデータ(文字列）を格納
             // フィールド（インスタンス）変数 str に、格納した文字列を代入
+            b[h][i]=inputValue[(int)(i*4+h)*1.5];
+            inputValue=fin.readLine();
+            str=inputValue;
         }
     }
     fin.close(); 
