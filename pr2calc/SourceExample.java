@@ -1,3 +1,4 @@
+//4J02 s15015 池口恭司
 package pr2calc;
 import java.io.*;
 public class SourceExample{  
@@ -98,30 +99,35 @@ public class SourceExample{
     // inputData に、ファイルから文字列を一行分読み込む
     // 得られた文字列データを、スペース(= "\\s") で区切り、配列 inputValue へ格納
     inputData=fin.readLine();
-    if(inputData==NULL)break;
-    inputValue=data.split("\\s");
+    inputValue=inputData.split("\\s");
     if(inputValue.length != 1)
         return false;
     else{
         // フィールド（インスタンス）変数 a に、inputValueの最初（0番目）の要素を代入
         // もう一行読み込み、スペース区切りで inputValue へデータ(次に読み込む行列の行数＆列数）を格納
-        this.a=inputValue[0];
+        this.a=Integer.parseInt(inputValue[0]);
         inputData=fin.readLine();
-        if(data==NULL)break;
-        inputValue=data.split("\\s");
+        inputValue=inputData.split("\\s");
         if(inputValue.length != 2)	// 行数＆列数の双方が格納されていなければ
             return false;
         else{
             // 変数 row に行数のデータ、column に列数のデータを代入
-            row=3;
-            column=4;
+            row=Integer.parseInt(inputValue[0]);
+            column=Integer.parseInt(inputValue[1]);
             this.b = new int[row][column];
             // 配列 b のh行i列目の要素に、読みんだファイルのh行目、(左から）i番目のデータを格納
             // 最後に一行読み込み、スペース区切りで inputValue へデータ(文字列）を格納
             // フィールド（インスタンス）変数 str に、格納した文字列を代入
-            b[h][i]=inputValue[(int)(i*4+h)*1.5];
-            inputValue=fin.readLine();
-            str=inputValue;
+            for(i=0;i<column;i++){
+                inputData=fin.readLine();
+                inputValue=inputData.split("\\s");
+                for(h=0;h<row;h++){
+                    b[i][h]=Integer.parseInt(inputValue[h]);
+                }
+            }
+            inputData=fin.readLine();
+            inputValue=inputData.split("\\s");
+            str=String.join("", inputValue);
         }
     }
     fin.close(); 
@@ -132,11 +138,8 @@ public class SourceExample{
 public static void main(String[] args){
         SourceExample    ex;    // SourceExample クラスのオブジェクト ex を宣言
         int value[][] = {{1,2,3},{4,5,6},{7,8,9}}; // "new"を用いない、二次元配列を初期化する書き方
+        
 
-    //    ex = new SourceExample();    // SourceExample クラスのオブジェクト ex を生成
-    //    ex.setA(10);    // ex オブジェクトのフィールド this.a の値を10に変更；
-
-    // 上の二行をコメントアウトした上で、aを3、bを配列 value、strを文字列"Hello World."として,初期化するコンストラクタを用いて ex を生成せよ
         ex = new SourceExample("sample.dat");
         //ex = new SourceExample();
         System.out.println("オブジェクトのaフィールドの値は"+ex.getA()+"です");
