@@ -43,7 +43,10 @@ public class SourceExample{
     public SourceExample(String fileName){
         try{
             loadData(fileName);
-        }catch(IOException e){System.out.println("ファイルからの入力に失敗しました");}
+        }catch(IOException e){
+            System.out.println("ファイルからの入力に失敗しました");
+            System.exit(0);
+        }
     }
 
     /* 以降、mainメソッド以外のメソッドは、コンストラクタで生成されたオブジェクト
@@ -127,7 +130,7 @@ public class SourceExample{
             }
             inputData=fin.readLine();
             inputValue=inputData.split("\\s");
-            str=String.join("", inputValue);
+            str=String.join(" ", inputValue);
         }
     }
     fin.close(); 
@@ -135,13 +138,23 @@ public class SourceExample{
 	}
 
     /* このプログラムを実行すると、以下の main メソッドに記述された動作が実行される */
-public static void main(String[] args){
+public static void main(String[] args) throws Exception{
         SourceExample    ex;    // SourceExample クラスのオブジェクト ex を宣言
-        int value[][] = {{1,2,3},{4,5,6},{7,8,9}}; // "new"を用いない、二次元配列を初期化する書き方
+        if(args.length!=1){
+            System.out.println("引数が指定されませんでした");
+            return false;
+        }
+        if(args[0]!="1"){
+            System.out.println("引数が不適当です。データ入力用のファイル名を再指定してください。");
+            String fn = null;
+            BufferedReader in;
+            in = new BufferedReader(new InputStreamReader(System.in));
+            fn = in.readLine();
+            ex = new SourceExample(fn);
+        }else{
+            ex = new SourceExample(args[0]);
+        }
         
-
-        ex = new SourceExample("sample.dat");
-        //ex = new SourceExample();
         System.out.println("オブジェクトのaフィールドの値は"+ex.getA()+"です");
         System.out.println();
         ex.showAllContentsOfB();
