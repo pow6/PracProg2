@@ -1,18 +1,18 @@
 package pr2calc;
 
 public class Matrix {
-        // å¿…è¦ãªãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼‰å¤‰æ•°ã‚’å®£è¨€ã›ã‚ˆ
+        // •K—v‚ÈƒtƒB[ƒ‹ƒhiƒCƒ“ƒXƒ^ƒ“ƒXj•Ï”‚ğéŒ¾‚¹‚æ
     double m[][];
     int numOfRow;
     int numOfColumn;
     public Matrix() {
-        // è¡Œåˆ—ã®è¡Œæ•°,åˆ—æ•°ã‚’æ ¼ç´ã™ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å¤‰æ•°ã®å€¤ã‚’0ã«åˆæœŸåŒ–
+        // s—ñ‚Ìs”,—ñ”‚ğŠi”[‚·‚éƒCƒ“ƒXƒ^ƒ“ƒX•Ï”‚Ì’l‚ğ0‚É‰Šú‰»
         numOfRow=0;
         numOfColumn=0;
     }
 
     public Matrix(double[][] input) {
-        // äºŒæ¬¡å…ƒé…åˆ— input ã®å†…å®¹ã§ã€è¡Œåˆ—ï¼ˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å¤‰æ•°ï¼‰ã‚’åˆæœŸåŒ–ã›ã‚ˆ(ä¾‹ï¼šé…åˆ— inputã®0è¡Œ0åˆ—ç›®ã®å€¤ã‚’ã€è¡Œåˆ—ã®0è¡Œ0åˆ—ç›®ã¨ã™ã‚‹)
+        // “ñŸŒ³”z—ñ input ‚Ì“à—e‚ÅAs—ñiƒCƒ“ƒXƒ^ƒ“ƒX•Ï”j‚ğ‰Šú‰»‚¹‚æ(—áF”z—ñ input‚Ì0s0—ñ–Ú‚Ì’l‚ğAs—ñ‚Ì0s0—ñ–Ú‚Æ‚·‚é)
         numOfColumn=input.length;
         numOfRow=input[0].length;
         for(int i=0;i<numOfColumn;i++){
@@ -23,7 +23,7 @@ public class Matrix {
     }
 
     public Matrix(double[] input) {
-        // ä¸€æ¬¡å…ƒé…åˆ— input ã®å†…å®¹ã§ã€è¡Œåˆ—ï¼ˆã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å¤‰æ•°ï¼‰ã‚’åˆæœŸåŒ–ã›ã‚ˆ(ä¾‹ï¼šè¡Œæ•°ã¯1ã€åˆ—æ•°ã¯inputã®è¦ç´ æ•°ã¨ã™ã‚‹)
+        // ˆêŸŒ³”z—ñ input ‚Ì“à—e‚ÅAs—ñiƒCƒ“ƒXƒ^ƒ“ƒX•Ï”j‚ğ‰Šú‰»‚¹‚æ(—áFs”‚Í1A—ñ”‚Íinput‚Ì—v‘f”‚Æ‚·‚é)
         numOfColumn=input.length;
         numOfRow=1;
         for(int i=0;i<numOfColumn;i++){
@@ -40,17 +40,17 @@ public class Matrix {
     }
 
     public double showsComponentOf(int rowIndex, int columnIndex) {
-        // æŒ‡å®šã—ãŸç¯„å›²ãŒå­˜åœ¨ã—ãªã„å ´åˆ
+        // w’è‚µ‚½”ÍˆÍ‚ª‘¶İ‚µ‚È‚¢ê‡
         if (0<rowIndex && rowIndex<this.numOfRow && 0<columnIndex && columnIndex<this.numOfColumn) {
-            System.out.println("æŒ‡å®šã™ã‚‹è¦ç´ ã¯å­˜åœ¨ã—ã¾ã›ã‚“.");
+            System.out.println("w’è‚·‚é—v‘f‚Í‘¶İ‚µ‚Ü‚¹‚ñ.");
             System.exit(0);
         }
-        // æŒ‡å®šã•ã‚ŒãŸè¦ç´ ã«å¯¾å¿œã™ã‚‹å€¤ã‚’è¿”ã™
+        // w’è‚³‚ê‚½—v‘f‚É‘Î‰‚·‚é’l‚ğ•Ô‚·
         return this.m[columnIndex][rowIndex];
     }
 
     public void display() {
-        // è¡Œåˆ—å†…å®¹ã®è¡¨ç¤ºå‡¦ç†ã‚’å®Ÿè£…ã›ã‚ˆ
+        // s—ñ“à—e‚Ì•\¦ˆ—‚ğÀ‘•‚¹‚æ
         for(int i=0;i<this.numOfColumn;i++){
             for(int j=0;j<this.numOfRow;j++){
                 System.out.print(this.m[i][j]+" ");
@@ -59,44 +59,44 @@ public class Matrix {
         }
     }
 
-    // ãƒ™ã‚¯ãƒˆãƒ«Aã¨Bã®å†…ç© Aãƒ»Bã®çµæœã‚’è¿”ã™
+    // ƒxƒNƒgƒ‹A‚ÆB‚Ì“àÏ AEB‚ÌŒ‹‰Ê‚ğ•Ô‚·
     public double getInnerProduct(Matrix B) {
-        // AãŒåˆ—ãƒ™ã‚¯ãƒˆãƒ«ã§ã‚ã‚‹å ´åˆã€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã¦ System.exit(0)
-        // A, B åŒæ–¹ã¨ã‚‚è¡Œãƒ™ã‚¯ãƒˆãƒ«ã€ã‹ã¤ã€è¦ç´ æ•°ãŒç­‰ã—ã‘ã‚Œã°å†…ç©ã‚’è¨ˆç®—
-        // AãŒè¡Œãƒ™ã‚¯ãƒˆãƒ«ã€BãŒåˆ—ãƒ™ã‚¯ãƒˆãƒ«ã§ã€è¦ç´ æ•°ãŒç­‰ã—ã‘ã‚Œã°å†…ç©ã‚’è¨ˆç®—
-        // å†…ç©è¨ˆç®—ãŒå¯èƒ½ãªæ¡ä»¶ã‚’æº€ãŸã•ãªã„å ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã¦System.out.exit(0)
-        // è¨ˆç®—çµæœã‚’è¿”ã™
+        // A‚ª—ñƒxƒNƒgƒ‹‚Å‚ ‚éê‡AƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚³‚¹‚Ä System.exit(0)
+        // A, B ‘o•û‚Æ‚àsƒxƒNƒgƒ‹A‚©‚ÂA—v‘f”‚ª“™‚µ‚¯‚ê‚Î“àÏ‚ğŒvZ
+        // A‚ªsƒxƒNƒgƒ‹AB‚ª—ñƒxƒNƒgƒ‹‚ÅA—v‘f”‚ª“™‚µ‚¯‚ê‚Î“àÏ‚ğŒvZ
+        // “àÏŒvZ‚ª‰Â”\‚ÈğŒ‚ğ–‚½‚³‚È‚¢ê‡‚ÍAƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚³‚¹‚ÄSystem.out.exit(0)
+        // ŒvZŒ‹‰Ê‚ğ•Ô‚·
         int sum=0;
         int elementsOfA,elementsOfB;
         elementsOfA=this.numOfRow*B.numOfColumn;
         elementsOfB=this.numOfRow*B.numOfColumn;
         if(this.numOfRow==1){
-            System.out.println("AãŒåˆ—ãƒ™ã‚¯ãƒˆãƒ«ãªãŸã‚ã€Aãƒ»Bã®å†…ç©ã‚’è¨ˆç®—ã§ãã¾ã›ã‚“ã§ã—ãŸ");
-            System.out.exit(0);
+            System.out.println("A‚ª—ñƒxƒNƒgƒ‹‚È‚½‚ßAAEB‚Ì“àÏ‚ğŒvZ‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+            System.exit(0);
         }
         if(B.numOfColumn==1 && elementsOfA==elementsOfB){
             B=this.multiplyMatrix(B);
         }else if(B.numOfRow==1 && elementsOfA==elementsOfB){
             B=this.multiplyMatrix(B);
         }else{
-            System.out.println("å†…ç©è¨ˆç®—ãŒå¯èƒ½ãªæ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã¾ã›ã‚“");
-            System.out.exit(0);
+            System.out.println("“àÏŒvZ‚ª‰Â”\‚ÈğŒ‚ğ–‚½‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+            System.exit(0);
         }
-        for(int i=0;i<b.numOfColumn;i++){
-            for(int j=0;j<b.numOfRow;j++){
-                sum+=b.showsComponentOf(j,i);
+        for(int i=0;i<B.numOfColumn;i++){
+            for(int j=0;j<B.numOfRow;j++){
+                sum+=B.showsComponentOf(j,i);
             }
         }
         return sum;
     }
 
-    // è¡Œåˆ—åŒå£«ã€ã‚‚ã—ãã¯è¡Œåˆ—ã¨ãƒ™ã‚¯ãƒˆãƒ«ã¨ã®ç©ã‚’è¨ˆç®—ã™ã‚‹
+    // s—ñ“¯mA‚à‚µ‚­‚Ís—ñ‚ÆƒxƒNƒgƒ‹‚Æ‚ÌÏ‚ğŒvZ‚·‚é
     public Matrix multiplyMatrix(Matrix target){
         Matrix result;
         result = new Matrix();
-		// æ›ã‘ã‚‰ã‚Œã‚‹è¡Œåˆ—ã®åˆ—æ•°ã¨æ›ã‘ã‚‹è¡Œåˆ—ã®è¡Œæ•°ãŒç­‰ã—ã„ãªã‚‰
+		// Š|‚¯‚ç‚ê‚és—ñ‚Ì—ñ”‚ÆŠ|‚¯‚és—ñ‚Ìs”‚ª“™‚µ‚¢‚È‚ç
 		if(this.numOfRow==target.numOfColumn){
-            // ç©ã®è¨ˆç®—å‡¦ç†ã‚’å®Ÿè£…ã›ã‚ˆ
+            // Ï‚ÌŒvZˆ—‚ğÀ‘•‚¹‚æ
             result.numOfRow=this.numOfRow;
             result.numOfColumn=target.numOfColumn;
             for(int i=0;i<result.numOfColumn;i++){
@@ -105,10 +105,10 @@ public class Matrix {
                 }
             }
         }else{
-            System.out.println("è¦ç´ æ•°ãŒè¨ˆç®—ã§ãã‚‹çµ„ã¿åˆã‚ã›ã¨ãªã£ã¦ã„ã¾ã›ã‚“");
+            System.out.println("—v‘f”‚ªŒvZ‚Å‚«‚é‘g‚İ‡‚í‚¹‚Æ‚È‚Á‚Ä‚¢‚Ü‚¹‚ñ");
             System.exit(0);
         }
-        // ç©ã®çµæœã‚’Matrixå‹ã§è¿”ã™
+        // Ï‚ÌŒ‹‰Ê‚ğMatrixŒ^‚Å•Ô‚·
         return result;
     }
 
@@ -117,7 +117,7 @@ public class Matrix {
         else if(this.numOfRow>1);
         else if(this.numOfColumn*this.numOfRow==y.numOfColumn*y.numOfRow);
         else{
-            System.out.println("è¦ç´ æ•°ãŒè¨ˆç®—ã§ãã‚‹çµ„ã¿åˆã‚ã›ã¨ãªã£ã¦ã„ã¾ã›ã‚“.");
+            System.out.println("—v‘f”‚ªŒvZ‚Å‚«‚é‘g‚İ‡‚í‚¹‚Æ‚È‚Á‚Ä‚¢‚Ü‚¹‚ñ.");
             return false;
         }
         return true;
@@ -125,10 +125,10 @@ public class Matrix {
 
     public static void main(String[] args) {
         /*
-         * main ãƒ¡ã‚½ãƒƒãƒ‰ä¸­ã§ä»Šå›ä½œæˆã—ãŸå†…ç©è¨ˆç®—ãƒ¡ã‚½ãƒƒãƒ‰ã‚„è¡Œåˆ—åŒå£«ã€ãƒ™ã‚¯ãƒˆãƒ«ã¨è¡Œåˆ—ã€ è¡Œåˆ—ã¨ãƒ™ã‚¯ãƒˆãƒ«ã®ç©ã‚’è¨ˆç®—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ãŒæ­£å¸¸ã«å‹•ã„ã¦ã„ã‚‹ã‹ã‚’ç¢ºèªã›ã‚ˆã€‚
+         * main ƒƒ\ƒbƒh’†‚Å¡‰ñì¬‚µ‚½“àÏŒvZƒƒ\ƒbƒh‚âs—ñ“¯mAƒxƒNƒgƒ‹‚Æs—ñA s—ñ‚ÆƒxƒNƒgƒ‹‚ÌÏ‚ğŒvZ‚·‚éƒƒ\ƒbƒh‚ª³í‚É“®‚¢‚Ä‚¢‚é‚©‚ğŠm”F‚¹‚æB
          */
 
-        // è¡Œåˆ—ãƒ»ãƒ™ã‚¯ãƒˆãƒ«å®šç¾©ã€ãŠã‚ˆã³æ¼”ç®—å‡¦ç†ã®ä¸€ä¾‹ ï¼ˆã‚ãã¾ã§ä¸€ä¾‹ã§ã™ï¼‰ èª²é¡Œã®è¦æ±‚ã‚’æº€ãŸã™ã‚ˆã†ã€å„è‡ªã§åŠ ç­†ãƒ»ä¿®æ­£ã—ã¦ãã ã•ã„
+        // s—ñEƒxƒNƒgƒ‹’è‹`A‚¨‚æ‚Ñ‰‰Zˆ—‚Ìˆê—á i‚ ‚­‚Ü‚Åˆê—á‚Å‚·j ‰Û‘è‚Ì—v‹‚ğ–‚½‚·‚æ‚¤AŠe©‚Å‰Á•MEC³‚µ‚Ä‚­‚¾‚³‚¢
 
         Matrix mat0, mat1, mat2;
 
@@ -144,7 +144,7 @@ public class Matrix {
         mat0 = new Matrix(v0);
         mat1 = new Matrix(m1);
         mat2 = new Matrix(v1);
-        // ä»¥ä¸‹ã¯ã€è¡Œåˆ—ãƒ»ãƒ™ã‚¯ãƒˆãƒ«æ¼”ç®—ã®å®Ÿè¡Œï¼†çµæœè¡¨ç¤ºã®ä¸€ä¾‹ï¼ä¸è¦ã§ã‚ã‚Œã°å‰Šé™¤ã—ï¼Œèª²é¡Œã®æ¡ä»¶ã‚’æº€ãŸã™è¨˜è¿°ã‚’æ–°ãŸã«è¿½åŠ ã™ã‚‹ã“ã¨
+        // ˆÈ‰º‚ÍAs—ñEƒxƒNƒgƒ‹‰‰Z‚ÌÀs•Œ‹‰Ê•\¦‚Ìˆê—áD•s—v‚Å‚ ‚ê‚Îíœ‚µC‰Û‘è‚ÌğŒ‚ğ–‚½‚·‹Lq‚ğV‚½‚É’Ç‰Á‚·‚é‚±‚Æ
 
         System.out.println("v0 = ");
         mat0.display();
@@ -153,12 +153,12 @@ public class Matrix {
         System.out.println("v1 = ");
         mat2.display();
 
-        System.out.println("ä¾‹é¡Œ0a");
+        System.out.println("—á‘è0a");
         System.out.println("v0 * m1 = ");
         if (mat0.multipliable(mat1) == true)
             (mat0.multiplyMatrix(mat1)).display();
 
-        System.out.println("ä¾‹é¡Œ0b");
+        System.out.println("—á‘è0b");
         System.out.println("v0 * v1 = ");
         if (mat0.multipliable(mat2) == true)
             (mat0.multiplyMatrix(mat2)).display();
