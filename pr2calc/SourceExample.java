@@ -130,21 +130,36 @@ public class SourceExample{
             }
             inputData=fin.readLine();
             inputValue=inputData.split("\\s");
-            str=String.join(" ", inputValue);
+            this.str=String.join(" ", inputValue);
         }
     }
-    fin.close(); 
-    return true;
+        fin.close(); 
+        return true;
 	}
 
+    private boolean saveData(String saveFileName) throws IOException{
+    File file = new File(saveFileName);
+    PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+    this.loadData("sample.dat");
+    pw.println(this.a);
+    pw.println(this.b[0].length+" "+this.b[1].length);
+    for(int i=0;i<this.b.length;i++){
+        for(int j=0;j<this.b[i].length;j++){
+            pw.print(b[i][j]);
+            if(j!=this.b[i].length-1){
+                pw.print(" ");
+            }
+        }
+        pw.println();
+    }
+    pw.println(this.str);
+    pw.close();
+    return true;
+    }
     /* このプログラムを実行すると、以下の main メソッドに記述された動作が実行される */
 public static void main(String[] args) throws Exception{
         SourceExample    ex;    // SourceExample クラスのオブジェクト ex を宣言
         if(args.length!=1){
-            System.out.println("引数が指定されませんでした");
-            return false;
-        }
-        if(args[0]!="1"){
             System.out.println("引数が不適当です。データ入力用のファイル名を再指定してください。");
             String fn = null;
             BufferedReader in;
@@ -160,6 +175,7 @@ public static void main(String[] args) throws Exception{
         ex.showAllContentsOfB();
         System.out.println();
         System.out.println(ex.getStr());
+        ex.saveData("savedSample.dat");
     }
 }
 
