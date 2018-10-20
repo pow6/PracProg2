@@ -1,6 +1,7 @@
 package pr2calc;
 import java.util.Arrays;
 
+//m[列][行]
 public class Matrix {
         // 必要なフィールド（インスタンス）変数を宣言せよ
     double[][] m;
@@ -16,6 +17,7 @@ public class Matrix {
         // 二次元配列 input の内容で、行列（インスタンス変数）を初期化せよ(例：配列 inputの0行0列目の値を、行列の0行0列目とする)
         this.numOfColumn=input.length;
         this.numOfRow=input[0].length;
+        this.m = new double[this.numOfColumn][this.numOfRow];   //javaの二次元配列はこんな感じでやんないとだめ
         for(int i=0;i<this.numOfColumn;i++){
             for(int j=0;j<this.numOfRow;j++){
                 this.m[i][j]=input[i][j];
@@ -27,6 +29,7 @@ public class Matrix {
         // 一次元配列 input の内容で、行列（インスタンス変数）を初期化せよ(例：行数は1、列数はinputの要素数とする)
         this.numOfColumn=input.length;
         this.numOfRow=1;
+        this.m = new double[this.numOfColumn][this.numOfRow];
         for(int i=0;i<this.numOfColumn;i++){
             this.m[i][0]=input[i];
         }
