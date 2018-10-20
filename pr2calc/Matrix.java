@@ -1,4 +1,5 @@
 package pr2calc;
+import java.util.Arrays;
 
 public class Matrix {
         // 必要なフィールド（インスタンス）変数を宣言せよ
