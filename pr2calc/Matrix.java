@@ -3,32 +3,32 @@ import java.util.Arrays;
 
 public class Matrix {
         // 必要なフィールド（インスタンス）変数を宣言せよ
-    double m[][];
+    double[][] m;
     int numOfRow;
     int numOfColumn;
     public Matrix() {
         // 行列の行数,列数を格納するインスタンス変数の値を0に初期化
-        numOfRow=0;
-        numOfColumn=0;
+        this.numOfRow=0;
+        this.numOfColumn=0;
     }
 
     public Matrix(double[][] input) {
         // 二次元配列 input の内容で、行列（インスタンス変数）を初期化せよ(例：配列 inputの0行0列目の値を、行列の0行0列目とする)
-        numOfColumn=input.length;
-        numOfRow=input[0].length;
-        for(int i=0;i<numOfColumn;i++){
-            for(int j=0;j<numOfRow;j++){
-                m[i][j]=input[i][j];
+        this.numOfColumn=input.length;
+        this.numOfRow=input[0].length;
+        for(int i=0;i<this.numOfColumn;i++){
+            for(int j=0;j<this.numOfRow;j++){
+                this.m[i][j]=input[i][j];
             }
         }
     }
 
     public Matrix(double[] input) {
         // 一次元配列 input の内容で、行列（インスタンス変数）を初期化せよ(例：行数は1、列数はinputの要素数とする)
-        numOfColumn=input.length;
-        numOfRow=1;
-        for(int i=0;i<numOfColumn;i++){
-            m[i][0]=input[i];
+        this.numOfColumn=input.length;
+        this.numOfRow=1;
+        for(int i=0;i<this.numOfColumn;i++){
+            this.m[i][0]=input[i];
         }
     }
 
