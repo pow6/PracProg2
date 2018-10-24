@@ -3,9 +3,9 @@ package pr2calc;
 import java.io.*;
 public class SourceExample{  
 
-    private int a;            // 左の3変数・・・フィールド変数（メソッドの外にある）。
-    private int[][] b;        // クラス内の、main()メソッドを除く全メソッドで利用可能
-    private String str;       
+    public int a;            // 左の3変数・・・フィールド変数（メソッドの外にある）。
+    public int[][] b;        // クラス内の、main()メソッドを除く全メソッドで利用可能
+    public String str;       
 
     /* 以下のメソッド（関数）はコンストラクタ。オブジェクトの生成（& 初期化）を行う 
     * 引数の設定は自由。引数が異なれば、複数用意しても良い

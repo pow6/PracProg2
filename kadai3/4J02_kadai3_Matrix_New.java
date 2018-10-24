@@ -1,11 +1,9 @@
-//4J02 s15015 池口恭司
 package pr2calc;
 import java.util.Arrays;
-import java.math.*;
 
 //m[行][列]
 public class Matrix {
-    // 必要なフィールド（インスタンス）変数を宣言せよ
+        // 必要なフィールド（インスタンス）変数を宣言せよ
     double[][] m;
     int numOfRow;
     int numOfColumn;
@@ -139,63 +137,77 @@ public class Matrix {
         return true;
     }
 
-    public Matrix transpose(){
-        Matrix result;
-        result = new Matrix(this.getNumOfColumn(),this.getNumOfRow());  //転置なので、行と列が逆
-        for(int i=0;i<result.numOfRow;i++){
-            for(int j=0;j<result.numOfColumn;j++){
-                result.m[i][j]=this.showsComponentOf(j, i);
-            }
-        }
-        return result;
-    }
-
-    public Matrix rotate(double deg){
-        Matrix turn;
-        int row,column;
-        double rad;
-        row = this.getNumOfRow();
-        column = this.getNumOfColumn();
-        if(deg<-360 || deg>360){
-            System.out.println("【エラー】角度の指定が不適当です");
-            System.exit(0);
-        }else if(column>1){
-            System.out.println("【エラー】与えられたベクトルが列ベクトルではありません");
-            System.exit(0);
-        }
-        turn = new Matrix(2,2);
-        rad = convertIntoRadian(deg);
-        turn.m[0][0]=Math.cos(rad);
-        turn.m[0][1]=(-1)*Math.sin(rad);
-        turn.m[1][0]=Math.sin(rad);
-        turn.m[1][1]=Math.cos(rad);
-        return turn.multiplyMatrix(this);
-    }
-
-    public static double convertIntoRadian(double theta){
-        return Math.toRadians(theta);
-        //return 2*Math.PI*360/theta;
-    }
-
     public static void main(String[] args) {
-        Matrix mat0,mat1,mat2;
-        double[][] m0 = { { 1.0, 2.0}, { 3.0, 2.0}, { 4.0, 2.0} },
-                v0 = { {-3.0}, {3.0}},
-                v1 = { {2.0}, {-3.464}};
-        mat0 = new Matrix(m0);
-        mat1 = new Matrix(v0);
-        mat2 = new Matrix(v1);
-        System.out.println("1.該当行列をディスプレイに表示");
-        mat0.display();
-        System.out.println("2.該当行列の転置行列をディスプレイに表示");
-        mat0.transpose().display();
-        System.out.println("3.（-3.0,3.0）を45°回転");
-        System.out.println("回転前"); mat1.display();
-        System.out.println("回転後"); mat1.rotate(45).display();
-        System.out.println("4.(2.0,-3.464)を60°回転");
-        System.out.println("回転前"); mat2.display();
-        System.out.println("回転後"); mat2.rotate(60).display();;
-        
+        /*
+         * main メソッド中で今回作成した内積計算メソッドや行列同士、ベクトルと行列、 行列とベクトルの積を計算するメソッドが正常に動いているかを確認せよ。
+         */
+
+        // 行列・ベクトル定義、および演算処理の一例 （あくまで一例です） 課題の要求を満たすよう、各自で加筆・修正してください
+
+        Matrix mat_vr0, mat_vr1, mat_vl0, mat_vl1, mat_m0, mat_m1, mat_m2, mat_m3, mat_m4;
+
+        double[] vr0 = { 2.0, -3.0, 7.0 },
+                vr1 = { -1.0, -2.0, 2.0};
+        double[][] m0 = { { 1.0, 2.0, 3.0 }, { 3.0, 2.0, -1.0 }, { 4.0, 2.0, 6.0 } },
+                m1 = { { 5.0, 3.0, 1.0 }, { 3.0, -3.0, 2.0}},
+                m2 = { { 8.0, 2.0 }, { -3.0, 2.0 }, { 1.0, 6.0 } },
+                m3 = { { 2.0, -3.0 }, { 4.0, 2.0 } },
+                m4 = { { -5.0, -3.0, 1.0 }, { -3.0, 3.0, 2.0}},
+                vl0 = { { 3.0 }, { -2.0 } },
+                vl1 = { { 3.0, 7.0, -5.0, 2.0 } };
+
+        mat_vr0 = new Matrix(vr0);
+        mat_vr1 = new Matrix(vr1);
+        mat_vl0 = new Matrix(vl0);
+        mat_vl1 = new Matrix(vl1);
+        mat_m0 = new Matrix(m0);
+        mat_m1 = new Matrix(m1);
+        mat_m2 = new Matrix(m2);
+        mat_m3 = new Matrix(m3);
+        mat_m4 = new Matrix(m4);
+
+        System.out.println("問題(1) XベクトルとYベクトルの内積");
+        System.out.println("Xベクトル:");  mat_vr0.display();
+        System.out.println("Yベクトル：");  mat_vr1.display();
+        System.out.printf("内積： %f%n",mat_vr0.getInnerProduct(mat_vr1));
+        System.out.println();
+
+        System.out.println("問題(2) 行列A,Bの積");
+        System.out.println("行列A:");   mat_m0.display();
+        System.out.println("行列B：");  mat_m1.display();
+        if(mat_m0.multipliable(mat_m1)==true){
+            System.out.println("行列A,Bの積：");
+            (mat_m0.multiplyMatrix(mat_m1)).display();
+        }
+        System.out.println();
+
+        System.out.println("問題(3) 行列A,Bの積");
+        System.out.println("行列A:");  mat_vl0.display();
+        System.out.println("行列B：");  mat_vl1.display();
+        if(mat_vl0.multipliable(mat_vl1)==true){
+            System.out.println("行列A,Bの積：");
+            (mat_vl0.multiplyMatrix(mat_vl1)).display();
+        }
+        System.out.println();
+
+        System.out.println("問題(4) 行列A,Bの積");
+        System.out.println("行列A:");  mat_m0.display();
+        System.out.println("行列B：");  mat_m2.display();
+        if(mat_m0.multipliable(mat_m2)==true){
+            System.out.println("行列A,Bの積：");
+            (mat_m0.multiplyMatrix(mat_m2)).display();
+        }
+        System.out.println();
+
+        System.out.println("問題(5) 行列A,Bの積");
+        System.out.println("行列A:");  mat_m3.display();
+        System.out.println("行列B：");  mat_m4.display();
+        if(mat_m3.multipliable(mat_m4)==true){
+            System.out.println("行列A,Bの積：");
+            (mat_m3.multiplyMatrix(mat_m4)).display();
+        }
+        System.out.println();
+
 
     }
 
