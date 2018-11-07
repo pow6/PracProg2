@@ -20,6 +20,7 @@ public class SimultaneousEquation extends Matrix{
         int i;
         double org;
         org=this.m[row][row];  //１にするまえの対角成分の値を保存
+//        answers[row]/=answers[row]/org;
         for(i=0;i<=numOfRow;i++){
             this.m[row][i]=this.m[row][i]/org;
         }
@@ -30,11 +31,12 @@ public class SimultaneousEquation extends Matrix{
            int i;
            double scale;
            scale=this.m[rowTo][rowFrom]/this.m[rowFrom][rowFrom];
+//           answers[rowTo]=answers[rowTo]-answers[rowFrom]*scale;
            for(i=0;i<=numOfRow;i++){
                 this.m[rowTo][i]-=this.m[rowFrom][i]*scale;
            }
     }
-    //掃き出し法を実行するメソッド
+    //掃き出し法を実行する関数
     public void solveByGaussJordan(){
         this.display();
         System.out.println();
@@ -57,37 +59,11 @@ public class SimultaneousEquation extends Matrix{
         int i;
         System.out.println("Answer:");
         for(i=0;i<this.numOfRow-1;i++){
+            answers[i]=this.m[i][this.numOfColumn-1];
             System.out.printf("x%d = %.2f, ",i,this.answers[i]);
         }
+        answers[i]=this.m[i][this.numOfColumn-1];
         System.out.printf("x%d = %.2f. \n",i,this.answers[i]);
-    }
-
-    //ガウスの消去法を実現するメソッド
-    public void solveByGauss(){
-        int i,j,counter;
-        this.display();
-        System.out.println();
-       //前進消去
-        for(i=0;i<this.numOfColumn-2;i++){
-            for(j=i+1;j<this.numOfRow;j++){   //すでに計算した行列で引かないようにj=iから始める
-                if(j==this.numOfRow)break;
-                this.subtractRowFrom(i, j);
-            }
-            this.display();
-            System.out.println();
-        }
-        //後退代入
-        counter=0;
-        for(i=this.numOfRow-1;i>=0;i--){
-            answers[i]=this.m[i][this.numOfColumn-1];
-            for(j=0;j<counter;j++){
-                if(counter==0)break;
-                answers[i]-=this.m[i][this.numOfColumn-j-2]*answers[this.numOfColumn-j-2];
-            }
-            answers[i]=answers[i]/this.m[i][i];
-            counter++;
-        }
-
     }
 
     //メイン関数
@@ -99,34 +75,43 @@ public class SimultaneousEquation extends Matrix{
             {3,4,1,-1,3},
             {-1,-3,1,3,-1}};
         mat = new SimultaneousEquation(m);
-        mat.solveByGauss();
+        mat.solveByGaussJordan();
         mat.displayAns();
     }
 }
 
 
-/***** 実行結果 ******/
+//実行結果
 /*
 [2.00 1.00 3.00 4.00 2.00]
 [3.00 2.00 5.00 2.00 12.00]
 [3.00 4.00 1.00 -1.00 3.00]
 [-1.00 -3.00 1.00 3.00 -1.00]
 
-[2.00 1.00 3.00 4.00 2.00]
+0行0列目が1となるように割り、他の行の0列目が0となるように引く
+[1.00 0.50 1.50 2.00 1.00]
 [0.00 0.50 0.50 -4.00 9.00]
 [0.00 2.50 -3.50 -7.00 0.00]
 [0.00 -2.50 2.50 5.00 0.00]
 
-[2.00 1.00 3.00 4.00 2.00]
-[0.00 0.50 0.50 -4.00 9.00]
+1行1列目が1となるように割り、他の行の1列目が0となるように引く
+[1.00 0.00 1.00 6.00 -8.00]
+[0.00 1.00 1.00 -8.00 18.00]
 [0.00 0.00 -6.00 13.00 -45.00]
 [0.00 0.00 5.00 -15.00 45.00]
 
-[2.00 1.00 3.00 4.00 2.00]
-[0.00 0.50 0.50 -4.00 9.00]
-[0.00 0.00 -6.00 13.00 -45.00]
+2行2列目が1となるように割り、他の行の2列目が0となるように引く
+[1.00 0.00 0.00 8.17 -15.50]
+[0.00 1.00 0.00 -5.83 10.50]
+[-0.00 -0.00 1.00 -2.17 7.50]
 [0.00 0.00 0.00 -4.17 7.50]
 
+3行3列目が1となるように割り、他の行の3列目が0となるように引く
+[1.00 0.00 0.00 0.00 -0.80]
+[0.00 1.00 0.00 0.00 0.00]
+[-0.00 -0.00 1.00 0.00 3.60]
+[-0.00 -0.00 -0.00 1.00 -1.80]
+
 Answer:
-x0 = -0.80, x1 = -0.00, x2 = 3.60, x3 = -1.80.
+x0 = -0.80, x1 = 0.00, x2 = 3.60, x3 = -1.80.
 */

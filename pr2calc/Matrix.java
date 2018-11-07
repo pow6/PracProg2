@@ -73,7 +73,7 @@ public class Matrix {
         for(int i=0;i<this.numOfRow;i++){
             System.out.print("[");
             for(int j=0;j<this.numOfColumn;j++){
-                System.out.print(this.m[i][j]);
+                System.out.printf("%.2f",this.m[i][j]);
                 if(j!=this.numOfColumn-1)System.out.print(" ");
             }
             System.out.println("]");
