@@ -57,7 +57,7 @@ public class SimultaneousEquation extends Matrix{
         int i;
         System.out.println("Answer:");
         for(i=0;i<this.numOfRow-1;i++){
-            System.out.printf("x%d = %.2f, ",i,this.answers[i]);
+            System.out.printf("x%d = %.2f, ",i+1,this.answers[i]);
         }
         System.out.printf("x%d = %.2f. \n",i,this.answers[i]);
     }
@@ -128,5 +128,5 @@ public class SimultaneousEquation extends Matrix{
 [0.00 0.00 0.00 -4.17 7.50]
 
 Answer:
-x0 = -0.80, x1 = -0.00, x2 = 3.60, x3 = -1.80.
+x1 = -0.80, x2 = -0.00, x3 = 3.60, x4 = -1.80.
 */
