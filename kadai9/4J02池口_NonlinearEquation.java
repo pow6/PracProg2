@@ -1,8 +1,6 @@
-//4J02 æ± å£æ­å¸
-/* ç·šå½¢åå¾©æ³•ã§å¾—å¯¾è±¡ã®æ–¹ç¨‹å¼
- * f(x)=x-sqrt(10+Î±+x)=0ã¨ã™ã‚‹
- * Î±ã¯ä»Šå›10ã¨ã—ã¦ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«ã¦ä¸ãˆã‚‹
- * x_k+1=sqrt(20+x_k)ã§ã‚ã‚‹
+//4J02 ’rŒû‹±i
+/* alpha = 3.0
+ * POSITIVE_MAX = 3.0
  */
 public class NonlinearEquation{
         
@@ -15,17 +13,17 @@ public class NonlinearEquation{
     private double answer_;
     private int iteration_;
 
-    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(æœ€ä½ä¸€ã¤ç”¨æ„ã›ã‚ˆï¼‰
+    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^(Å’áˆê‚Â—pˆÓ‚¹‚æj
     public NonlinearEquation(double init){
-            // å‡¦ç†ã‚’å®Ÿè£…ã›ã‚ˆ
+            // ˆ—‚ğÀ‘•‚¹‚æ
             this.initialValue_ = init;
             this.answer_ = 0;
             this.iteration_ = 0; 
     }
     
     private int _solveNLEByLinearIteration(double alpha){
-        double value,      // x_k ã«å¯¾å¿œ
-                pastValue;  // x_{k-1} ã«å¯¾å¿œï¼ˆåˆå›ã®pastValue = x_0ã¨ã™ã‚‹ï¼‰
+        double value,      // x_k ‚É‘Î‰
+                pastValue;  // x_{k-1} ‚É‘Î‰i‰‰ñ‚ÌpastValue = x_0‚Æ‚·‚éj
         pastValue = this.initialValue_;
         value = Math.sqrt(pastValue+10+alpha);
         while(Math.abs(value-pastValue)>=EPSILON){
@@ -36,7 +34,7 @@ public class NonlinearEquation{
                 if(iteration_==MAXIMUM_IT)return -1;
         }
         this.answer_ = value;
-        //è§£ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ï¼‘ã€è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰-1ã‚’è¿”ã™
+        //‰ğ‚ªŒ©‚Â‚©‚Á‚½‚ç‚PAŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç-1‚ğ•Ô‚·
         return 1;
     }
     
@@ -50,7 +48,7 @@ public class NonlinearEquation{
                 System.out.println("xMid = "+mid+", f(xMid)="+value+", xPastMid = "+pastMid);
                 if(value == NEGATIVE_MAX)break;
                 if(bigX - smallX < EPSILON)break;
-                if(value*calcSin(smallX, alpha)>0){      //f(x_0)ã¨f(x_2)ãŒåŒç¬¦å·ã®å ´åˆ
+                if(value*calcSin(smallX, alpha)>0){      //f(x_0)‚Æf(x_2)‚ª“¯•„†‚Ìê‡
                         smallX = mid;
                         //bigX = bigX;
                 }else if(value*calcSin(bigX, alpha)>0){
@@ -62,7 +60,7 @@ public class NonlinearEquation{
                 if(iteration_ == MAXIMUM_IT)return -1;
         }
         this.answer_ = mid;
-        //è§£ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ï¼‘ï¼Œè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰-1ã‚’è¿”ã™
+        //‰ğ‚ªŒ©‚Â‚©‚Á‚½‚ç‚PCŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç-1‚ğ•Ô‚·
         return 1;
     }
     
@@ -84,3 +82,19 @@ public class NonlinearEquation{
 
     }
 }
+/*ÀsŒ‹‰Ê
+xMid = 1.5, f(xMid)=-0.21722891503668823, xPastMid = 0.0
+xMid = 0.75, f(xMid)=-0.152416351664625, xPastMid = 1.5
+xMid = 0.375, f(xMid)=-0.06853149997096943, xPastMid = 0.75
+xMid = 0.1875, f(xMid)=-0.014397246516950494, xPastMid = 0.375
+xMid = 0.09375, f(xMid)=0.015458393324604481, xPastMid = 0.1875
+xMid = 0.140625, f(xMid)=3.0810855762221834E-4, xPastMid = 0.09375
+xMid = 0.1640625, f(xMid)=-0.007100983511811885, xPastMid = 0.140625
+xMid = 0.15234375, f(xMid)=-0.0034104431975624946, xPastMid = 0.1640625
+xMid = 0.146484375, f(xMid)=-0.001554656346030668, xPastMid = 0.15234375
+xMid = 0.1435546875, f(xMid)=-6.241445899367854E-4, xPastMid = 0.146484375
+xMid = 0.14208984375, f(xMid)=-1.5823549435152535E-4, xPastMid = 0.1435546875
+xMid = 0.141357421875, f(xMid)=7.488218659417961E-5, xPastMid = 0.14208984375
+xMid = 0.1417236328125, f(xMid)=-4.16902432041752E-5, xPastMid = 0.141357421875
+X = 0.1417236328125 at iteration 12.
+*/
