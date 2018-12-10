@@ -1,29 +1,30 @@
-//4J02 æ± å£æ­å¸
-/* ç·šå½¢åå¾©æ³•ã§å¾—å¯¾è±¡ã®æ–¹ç¨‹å¼
- * f(x)=x-sqrt(10+Î±+x)=0ã¨ã™ã‚‹
- * Î±ã¯ä»Šå›10ã¨ã—ã¦ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«ã¦ä¸ãˆã‚‹
- * x_k+1=sqrt(20+x_k)ã§ã‚ã‚‹
+//4J02 ’rŒû‹±i
+/* üŒ`”½•œ–@‚Å“¾‘ÎÛ‚Ì•û’ö®
+ * f(x)=x-sqrt(10+ƒ¿+x)=0‚Æ‚·‚é
+ * ƒ¿‚Í¡‰ñ10‚Æ‚µ‚ÄAƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É‚Ä—^‚¦‚é
+ * x_k+1=sqrt(20+x_k)‚Å‚ ‚é
  */
 public class NonlinearEquation{
         
     public static final double EPSILON = 0.001;
     public static final int MAXIMUM_IT = 100;
-    
+    public static final double POSITIVE_MAX = 3.0;
+
     private double initialValue_;
     private double answer_;
     private int iteration_;
 
-    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(æœ€ä½ä¸€ã¤ç”¨æ„ã›ã‚ˆï¼‰
+    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^(Å’áˆê‚Â—pˆÓ‚¹‚æj
     public NonlinearEquation(double init){
-            // å‡¦ç†ã‚’å®Ÿè£…ã›ã‚ˆ
+            // ˆ—‚ğÀ‘•‚¹‚æ
             this.initialValue_ = init;
             this.answer_ = 0;
             this.iteration_ = 0; 
     }
     
     private int _solveNLEByLinearIteration(double alpha){
-        double value,      // x_k ã«å¯¾å¿œ
-                pastValue;  // x_{k-1} ã«å¯¾å¿œï¼ˆåˆå›ã®pastValue = x_0ã¨ã™ã‚‹ï¼‰
+        double value,      // x_k ‚É‘Î‰
+                pastValue;  // x_{k-1} ‚É‘Î‰i‰‰ñ‚ÌpastValue = x_0‚Æ‚·‚éj
         pastValue = this.initialValue_;
         value = Math.sqrt(pastValue+10+alpha);
         while(Math.abs(value-pastValue)>=EPSILON){
@@ -34,13 +35,38 @@ public class NonlinearEquation{
                 if(iteration_==MAXIMUM_IT)return -1;
         }
         this.answer_ = value;
-        //è§£ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ï¼‘ã€è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰-1ã‚’è¿”ã™
+        //‰ğ‚ªŒ©‚Â‚©‚Á‚½‚ç‚PAŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç-1‚ğ•Ô‚·
         return 1;
     }
     
+    private double _solveNLEByBisectionMethod(double alpha){
+        double mid,smallX,bigX,value,pastMid=0.0;
+        bigX = POSITIVE_MAX;
+        smallX = 0;
+        while(1){
+                mid = (bigX+smallX)/2;
+                value = Math.sin(mid + alpha)/(mid + alpha);
+                System.out.println("xMid = "+mid+", f(xMid)="+value+", xPastMid = "+pastMid);
+                if(value == 0)break;
+                if(mid < EPSILON)break;
+                if(value*smallX>0){      //f(x_0)‚Æf(x_2)‚ª“¯•„†‚Ìê‡
+                        smallX = mid;
+                        //bigX = bigX;
+                }else if(value*bigX){
+                        //smallX = smallX;
+                        bigX = mid;
+                }
+                pastMid = mid;
+                iteration_++;
+                if(iteration_ == MAXIMUM_IT)return -1;
+        }
+        this.answer_ = mid;
+        //‰ğ‚ªŒ©‚Â‚©‚Á‚½‚ç‚PCŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç-1‚ğ•Ô‚·
+        return 1;
+    }
     
     public static void main(String[] args) {
-        NonlinearEquation eqn = new NonlinearEquation(4.0); //åˆæœŸåå¾©è§£ã‚’4.0ã«è¨­å®š
+        NonlinearEquation eqn = new NonlinearEquation(3.0);
         if(eqn._solveNLEByLinearIteration(10)==1){
                 System.out.println("X = "+eqn.answer_+" at iteration "+eqn.iteration_+".");
         }else{
