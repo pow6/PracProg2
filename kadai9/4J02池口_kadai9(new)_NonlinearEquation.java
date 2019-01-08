@@ -47,7 +47,7 @@ public class NonlinearEquation{
                 value = calcSin(mid,alpha);
                 System.out.println("xMid = "+mid+", f(xMid)="+value+", xPastMid = "+pastMid);
                 if(value == NEGATIVE_MAX)break;
-                if(bigX - smallX < EPSILON)break;
+                if(Math.abs(bigX - smallX) < EPSILON)break;
                 if(value*calcSin(smallX, alpha)>0){      //f(x_0)‚Æf(x_2)‚ª“¯•„†‚Ìê‡
                         smallX = mid;
                         //bigX = bigX;
