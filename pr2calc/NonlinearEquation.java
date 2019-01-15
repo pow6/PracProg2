@@ -1,19 +1,8 @@
 //4J02 池口恭司　課題10
-/* alpha：1.0
- * POSITIVE_MAX:5.0
+/* alpha：3.05
  * 
 実行結果
-xNext = 4.737797636355764, f(xNext)=-0.09040917653742735, xPastNext = 0.0
-xNext = 4.278145847776519, f(xNext)=-0.15993933175130398, xPastNext = 4.737797636355764
-xNext = 3.594865701054022, f(xNext)=-0.21613299470460137, xPastNext = 4.278145847776519
-xNext = 2.8602153928282474, f(xNext)=-0.1705471191102443, xPastNext = 3.594865701054022
-xNext = 2.3782067277726964, f(xNext)=-0.0693895935643059, xPastNext = 2.8602153928282474
-xNext = 2.197034326452006, f(xNext)=-0.017332711817567747, xPastNext = 2.3782067277726964
-xNext = 2.1526929210955448, f(xNext)=-0.0035208121532872352, xPastNext = 2.197034326452006
-xNext = 2.143723334140801, f(xNext)=-6.77756504755059E-4, xPastNext = 2.1526929210955448
-xNext = 2.1419980778258125, f(xNext)=-1.2903388699502918E-4, xPastNext = 2.143723334140801
-xNext = 2.1416696672604867, f(xNext)=-2.4513611796899844E-5, xPastNext = 2.1419980778258125
-X = 2.1416696672604867 at iteration 9.
+
  */
 public class NonlinearEquation{
         
@@ -87,7 +76,6 @@ public class NonlinearEquation{
         //解が見つかったら１，見つからなかったら-1を返す
         return 1;
     }
-    
     private double calcSin(double mid,double alpha){
         if(mid + alpha == 0){
                 return 1.0;
@@ -96,6 +84,21 @@ public class NonlinearEquation{
         }
     }
 
+    private double _solveNLEByNewton(double alpha){
+        while(true){
+                System.out.println("xNext = "+mid+", f(xNext)="+value+", xPastNext = "+pastMid);
+                if(value == 0)break;
+                if(Math.abs(mid - pastMid) < EPSILON)break;
+
+
+                iteration_++;
+                if(iteration_ == MAXIMUM_IT)return -1;
+        }
+        this.answer_ = mid;
+        //解が見つかったら１，見つからなかったら-1を返す
+        return 1;
+    }
+    
     public static void main(String[] args) {
         NonlinearEquation eqn = new NonlinearEquation();
         if(eqn._solveNLEByBisectionMethod(1.0)==1){
