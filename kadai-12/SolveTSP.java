@@ -127,7 +127,7 @@ public class SolveTSP{
         SolveTSP tsp = new SolveTSP();
         int[] distances = new int[tsp.size];
         for(int i=0;i<tsp.size;i++){
-            System.out.printf("[%5d]/%d\r",i+1,tsp.size);            
+            System.out.printf("[%5d]/%d\r",i+1,tsp.size);      //計算実行画面を表示       
             distances[i] = tsp.solveByGreedy(i);
             tsp.clearFlags();
             if(tsp.result > distances[i]){
